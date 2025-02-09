@@ -6,14 +6,14 @@ const { Server } = require("socket.io");
 const sequelize = require("./database");
 const AccountAPI = require("./API/AccountAPI");
 const AppointmentAPI = require("./API/AppointmentAPI");
-const ServiceAPI = require("./API/ServiceAPI");
 const EmployeeAPI = require("./API/EmployeeAPI");
 const DepartmentAPI = require("./API/DepartmentAPI");
 const DoctorRoomAPI = require("./API/DoctorRoomAPI");
 const ShiftAPI = require("./API/ShiftAPI");
 const RoomAPI = require("./API/RoomAPI");
 const PatientAPI = require("./API/PatientAPI");
-const ConsultationHours = require("./API/ConsultationHoursAPI")
+const ConsultationHoursAPI = require("./API/ConsultationHoursAPI");
+const ScheduleAPI = require("./API/ScheduleAPI");
 
 const app = express();
 const httpServer = createServer(app);
@@ -31,14 +31,14 @@ app.use(express.json()); // Parse JSON request body
 
 app.use("/account", AccountAPI);
 app.use("/appointment", AppointmentAPI);
-app.use("/service", ServiceAPI);
 app.use("/employee", EmployeeAPI);
 app.use("/department", DepartmentAPI);
 app.use("/doctor-room", DoctorRoomAPI);
 app.use("/shift", ShiftAPI);
 app.use("/room", RoomAPI);
 app.use("/patient", PatientAPI);
-app.use("/consultation-hours", ConsultationHours)
+app.use("/consultation-hours", ConsultationHoursAPI)
+app.use("/schedule", ScheduleAPI)
 
 // Socket.IO Events
 io.on("connection", (socket) => {
@@ -65,5 +65,5 @@ sequelize
 // Khởi động server
 const PORT = process.env.port;
 httpServer.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://${process.env.ip}:${PORT}`);
 });

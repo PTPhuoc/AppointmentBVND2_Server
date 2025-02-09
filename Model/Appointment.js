@@ -3,25 +3,18 @@ const sequelize = require("../database");
 
 const Appointment = sequelize.define(
   "Appointment",
-  { 
+  {
     Id: { type: DataTypes.STRING, primaryKey: true },
-    PatientId: {type: DataTypes.STRING, allowNull: false},
+    PatientId: { type: DataTypes.STRING, allowNull: false },
     Object: { type: DataTypes.STRING },
-    ReferralPlace: { type: DataTypes.STRING },
-    Referrer: { type: DataTypes.STRING },
-    Company: { type: DataTypes.BOOLEAN },
-    CheckMedical: { type: DataTypes.STRING },
-    Require: { type: DataTypes.BOOLEAN },
-    Paraclinical: { type: DataTypes.BOOLEAN },
-    Priority: { type: DataTypes.STRING(50) },
-    ServiceName: { type: DataTypes.STRING },
-    ServiceId: { type: DataTypes.STRING },
-    Doctor: { type: DataTypes.STRING },
+    Priority: { type: DataTypes.BOOLEAN },
     DoctorId: { type: DataTypes.STRING },
     State: { type: DataTypes.STRING(50) },
     Date: { type: DataTypes.DATE },
+    Note: { type: DataTypes.STRING },
     Time: { type: DataTypes.TIME },
     DoctorRoomId: { type: DataTypes.STRING },
+    Number: { type: DataTypes.INTEGER },
   },
   {
     timestamps: false,

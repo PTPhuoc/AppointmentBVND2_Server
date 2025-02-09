@@ -1,6 +1,5 @@
 const uri = require("express").Router();
 const setId = require("../createId");
-const { Sequelize } = require("sequelize");
 const { Room, Department } = require("../relative")
 
 uri.post("/add-room", async (req, res) => {

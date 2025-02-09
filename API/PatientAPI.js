@@ -11,10 +11,8 @@ uri.post("/save-patient", async (req, res) => {
     gender,
     ethnicity,
     nation,
-    job,
     location,
-    codeLocation,
-    marital,
+    typeRelatives,
     relatives,
     relativesPhone,
   } = req.body;
@@ -29,10 +27,8 @@ uri.post("/save-patient", async (req, res) => {
           Gender: gender,
           Ethnicity: ethnicity,
           Nation: nation,
-          Job: job,
           Location: location,
-          CodeLocation: codeLocation,
-          Marital: marital,
+          TypeRelatives: typeRelatives,
           Relatives: relatives,
           RelativesPhone: relativesPhone,
         },
@@ -55,10 +51,8 @@ uri.post("/save-patient", async (req, res) => {
         Gender: gender,
         Ethnicity: ethnicity,
         Nation: nation,
-        Job: job,
         Location: location,
-        CodeLocation: codeLocation,
-        Marital: marital,
+        TypeRelatives: typeRelatives,
         Relatives: relatives,
         RelativesPhone: relativesPhone,
       });
@@ -88,7 +82,7 @@ uri.get("/one-patient", async (req, res) => {
   const { id } = req.query;
   try {
     const onePatient = await Patient.findOne({ where: { Id: id } });
-    return res.json({ Status: "Success", Patients: onePatient });
+    return res.json({ Status: "Success", Patient: onePatient });
   } catch (err) {
     return res.json({ Status: "Server Error", Message: err });
   }

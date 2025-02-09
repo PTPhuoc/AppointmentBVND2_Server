@@ -7,7 +7,7 @@ const Shift = require("./Model/Shift");
 const Appointment = require("./Model/Appointment");
 const Patient = require("./Model/Patient");
 const ConsultationHours = require("./Model/ConsultationHours");
-const Service = require("./Model/Service");
+const Schedule = require("./Model/Schedule");
 
 DoctorRoom.belongsTo(Employee, { foreignKey: "EmployeeId" });
 Employee.hasMany(DoctorRoom, { foreignKey: "EmployeeId" });
@@ -24,17 +24,14 @@ Department.hasMany(Room, { foreignKey: "DepartmentId" });
 Appointment.belongsTo(DoctorRoom, { foreignKey: "DoctorRoomId" });
 DoctorRoom.hasMany(Appointment, { foreignKey: "DoctorRoomId" });
 
-Appointment.belongsTo(Service, { foreignKey: "ServiceId" });
-Service.hasMany(Appointment, { foreignKey: "ServiceId" });
-
 Appointment.belongsTo(Patient, { foreignKey: "PatientId" });
 Patient.hasMany(Appointment, { foreignKey: "PatientId" });
 
 Appointment.belongsTo(Employee, {foreignKey: "DoctorId"})
 Employee.hasMany(Appointment, {foreignKey: "DoctorId"})
 
-Service.belongsTo(Department, { foreignKey: "DepartmentId" });
-Department.hasMany(Service, { foreignKey: "DepartmentId" });
+Schedule.belongsTo(DoctorRoom, {foreignKey: "ScheduleId"})
+DoctorRoom.hasMany(Schedule, {foreignKey: "ScheduleId"})
 
 module.exports = {
   sequelize,
@@ -46,5 +43,5 @@ module.exports = {
   Appointment,
   Patient,
   ConsultationHours,
-  Service,
+  Schedule
 };
